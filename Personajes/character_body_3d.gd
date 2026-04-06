@@ -12,6 +12,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 # Referencias a nuestros nodos
 @onready var camera = $Camera3D
 @onready var colision = $CollisionShape3D
+@onready var raycast = $Camera3D/RayCast3D
+@onready var texto_bici = $CanvasLayer/Label # Asegúrate de que el nombre coincida
 
 # Variables para controlar el estado de agacharse
 var esta_agachado = false
@@ -33,6 +35,22 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 
 func _physics_process(delta):
+	# 1. Por defecto, el texto siempre está apagado cada frame
+	texto_bici.visible = false 
+	
+	# 2. Revisamos TODO EL TIEMPO qué está mirando el láser (Fuera del botón)
+	if raycast.is_colliding():
+		var objeto_mirado = raycast.get_collider()
+		
+		# 3. Si lo que miramos es la bici...
+		if objeto_mirado.has_method("montar"):
+			# ... encendemos el texto mágico (porque la estamos mirando)
+			texto_bici.visible = true 
+			
+			# 4. Y SOLO si la estamos mirándola Y apretamos la 'E' a la vez...
+			if Input.is_action_just_pressed("interactuar"):
+				texto_bici.visible = false # Apagamos el texto
+				objeto_mirado.montar(self) # Nos subimos
 	# Gravedad
 	if not is_on_floor():
 		velocity.y -= gravity * delta

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dn6gxbigyie7t"]
+
+[ext_resource type="Script" uid="uid://dk6bbmkh16lm5" path="res://Objetos/bicicleta.gd" id="1_ja6pl"]
+[ext_resource type="PackedScene" uid="uid://nfn6lyddwtj" path="res://Assets_3D/bycicle_ussr.glb" id="2_dj0o5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dj0o5"]
+size = Vector3(2.984375, 1.6018372, 1)
+
+[node name="Bicicleta" type="CharacterBody3D" unique_id=354868661]
+script = ExtResource("1_ja6pl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=442648386]
+transform = Transform3D(-0.020657111, 0, 0.5996443, 0, 0.59999985, 0, -0.5996443, 0, -0.020657111, 0.052026004, 0.18055117, -0.09365721)
+shape = SubResource("BoxShape3D_dj0o5")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2098410414]
+transform = Transform3D(0.99856573, 0, 0.0535385, 0, 1, 0, -0.0535385, 0, 0.99856573, 0.024255427, 1.4210422, 0.02807273)
+
+[node name="Sketchfab_Scene" parent="." unique_id=871787162 instance=ExtResource("2_dj0o5")]
+transform = Transform3D(-0.004992135, 0, 0.14491405, 0, 0.14500001, 0, -0.14491405, 0, -0.004992135, 0.056411207, 0.45318723, 0.033639196)
