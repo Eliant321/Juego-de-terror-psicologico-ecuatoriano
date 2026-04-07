@@ -26,7 +26,7 @@ var estado_actual: EstadoJuego = EstadoJuego.TUTORIAL
 # ==========================================
 # VARIABLES DEL TUTORIAL
 # ==========================================
-var se_levanto: bool = false # Para el inicio [cite: 7]
+var se_levanto: bool = true # Para el inicio [cite: 7]
 var cama_tendida: bool = false # [cite: 8]
 var cara_lavada: bool = false # [cite: 10]
 

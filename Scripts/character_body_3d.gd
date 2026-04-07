@@ -4,7 +4,7 @@ extends CharacterBody3D
 # y podrás ajustarlas sin tener que abrir el código de nuevo.
 @export var velocidad_caminar = 4.0
 @export var velocidad_agachado = 1.5
-@export var sensibilidad_raton = 0.001 # Hemos bajado drásticamente la sensibilidad
+@export var sensibilidad_raton = 0.001 
 
 const JUMP_VELOCITY = 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -13,7 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera = $Camera3D
 @onready var colision = $CollisionShape3D
 @onready var raycast = $Camera3D/RayCast3D
-@onready var texto_bici = $CanvasLayer/Label # Asegúrate de que el nombre coincida
+@onready var texto_bici = $CanvasLayer/Label 
 
 # Variables para controlar el estado de agacharse
 var esta_agachado = false
@@ -23,12 +23,10 @@ var pos_camara_normal = 0.5
 var pos_camara_agachado = 0.0
 
 func _ready():
-	# Atrapamos el ratón al iniciar
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	colision.shape.height = altura_normal
 
 func _unhandled_input(event):
-	# Rotación de la cámara
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * sensibilidad_raton)
 		camera.rotate_x(-event.relative.y * sensibilidad_raton)
@@ -38,36 +36,35 @@ func _physics_process(delta):
 	# 1. Por defecto, el texto siempre está apagado cada frame
 	texto_bici.visible = false 
 	
-	# 2. Revisamos TODO EL TIEMPO qué está mirando el láser (Fuera del botón)
+	# 2. Revisamos TODO EL TIEMPO qué está mirando el láser
 	if raycast.is_colliding():
 		var objeto_mirado = raycast.get_collider()
 		
-		# 3. Si lo que miramos es la bici...
-		if objeto_mirado.has_method("montar"):
-			# ... encendemos el texto mágico (porque la estamos mirando)
+		# 3. Si lo que miramos tiene la función "interactuar"...
+		if objeto_mirado.has_method("interactuar"):
+			# ... encendemos el texto en pantalla
 			texto_bici.visible = true 
 			
-			# 4. Y SOLO si la estamos mirándola Y apretamos la 'E' a la vez...
+			# 4. Y SOLO si la estamos mirando Y apretamos la acción a la vez...
 			if Input.is_action_just_pressed("interactuar"):
 				texto_bici.visible = false # Apagamos el texto
-				objeto_mirado.montar(self) # Nos subimos
+				objeto_mirado.interactuar(self) # Activamos el objeto (cama, lavabo, bici, etc)
+
 	# Gravedad
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Salto (Puedes borrar este bloque de 'if' si no quieres que el personaje salte)
+	# Salto 
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# LÓGICA PARA AGACHARSE
 	if Input.is_action_pressed("agacharse"):
 		esta_agachado = true
-		# Usamos lerp para encoger la colisión y bajar la cámara suavemente
 		colision.shape.height = lerp(colision.shape.height, altura_agachado, delta * 10)
 		camera.position.y = lerp(camera.position.y, pos_camara_agachado, delta * 10)
 	else:
 		esta_agachado = false
-		# Volvemos a la altura normal suavemente
 		colision.shape.height = lerp(colision.shape.height, altura_normal, delta * 10)
 		camera.position.y = lerp(camera.position.y, pos_camara_normal, delta * 10)
 
@@ -75,7 +72,6 @@ func _physics_process(delta):
 	var velocidad_actual = velocidad_agachado if esta_agachado else velocidad_caminar
 
 	# MOVIMIENTO
-	# Usamos las nuevas acciones que creaste en el Mapa de Entrada
 	var input_dir = Input.get_vector("izquierda", "derecha", "adelante", "atras")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	

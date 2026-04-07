@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bghci44fseft8"]
 
-[ext_resource type="Script" uid="uid://b8d31hc0mg2eh" path="res://Personajes/character_body_3d.gd" id="1_gq1nh"]
+[ext_resource type="Script" uid="uid://b8d31hc0mg2eh" path="res://Scripts/character_body_3d.gd" id="1_gq1nh"]
 [ext_resource type="PackedScene" uid="uid://c1sf0il1etyxk" path="res://Assets_3D/street_light.glb" id="2_t43i8"]
 [ext_resource type="PackedScene" uid="uid://dn6gxbigyie7t" path="res://Objetos/bicicleta.tscn" id="3_hkrh4"]
 
