@@ -1,15 +1,20 @@
 [gd_scene format=3 uid="uid://ba52pattf521v"]
 
 [sub_resource type="Environment" id="Environment_ve73f"]
-background_mode = 1
-background_color = Color(0.7617243, 0.8425417, 0.99999934, 1)
+background_color = Color(0.6531971, 0.74683094, 0.98195785, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.74124753, 0.85668916, 0.98824006, 1)
-ambient_light_energy = 1.5
+ambient_light_color = Color(0.9763951, 0.98215276, 0.99959475, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2xqf"]
+albedo_color = Color(0.4303101, 0.29903433, 0.21103758, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vu30y"]
+albedo_color = Color(0.41705275, 0.33424312, 0.23146594, 1)
 
 [node name="Cocina" type="Node3D" unique_id=1236801763]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1454706514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005174637, -0.029335499, -0.0063102245)
 use_collision = true
 flip_faces = true
 size = Vector3(10, 5, 10)
@@ -27,3 +32,19 @@ environment = SubResource("Environment_ve73f")
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1481061638]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019697428, -2.2658148, -0.028590202)
 size = Vector3(1.454956, 0.5274658, 1.3699951)
+material = SubResource("StandardMaterial3D_h2xqf")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1753907527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2881296, -2.2658148, 4.326348)
+size = Vector3(7.3766165, 0.5274658, 1.3699951)
+material = SubResource("StandardMaterial3D_vu30y")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=809805011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1527743, -1.6394246, -4.9750743)
+operation = 2
+size = Vector3(0.8822632, 1.7454224, 0.001)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=232142348]
+transform = Transform3D(0.877983, -0.34723085, -0.32950968, 0, -0.68835455, 0.72537446, -0.47869185, -0.63686645, -0.60436356, -3.3542929, 8.162947, -2.8177996)
+light_color = Color(0.82945764, 0.8665584, 0.99638003, 1)
+light_energy = 0.1
