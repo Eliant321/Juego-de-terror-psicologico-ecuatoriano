@@ -7,7 +7,7 @@ ambient_light_source = 2
 ambient_light_color = Color(0.74124753, 0.85668916, 0.98824006, 1)
 ambient_light_energy = 1.5
 
-[node name="Node3D" type="Node3D" unique_id=1236801763]
+[node name="Cocina" type="Node3D" unique_id=1236801763]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1454706514]
 use_collision = true
@@ -23,3 +23,7 @@ omni_range = 9.179
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1610699480]
 environment = SubResource("Environment_ve73f")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1481061638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019697428, -2.2658148, -0.028590202)
+size = Vector3(1.454956, 0.5274658, 1.3699951)
